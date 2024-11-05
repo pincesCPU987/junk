@@ -1,0 +1,21 @@
+<textarea id="input" placeholder="input"></textarea>
+<textarea id="output" placeholder="tupni"></textarea>
+
+<script>
+var input = document.querySelector('#input');
+var output = document.querySelector('#output');
+
+input.oninput = (e) => {
+	var outputvalue = '';
+  for (var i = input.value.length - 1; i >= 0; i--) {
+  	outputvalue += input.value[i];
+  }
+  output.value = outputvalue;
+};
+</script>
+<style>
+textarea {
+  width: 400px;
+  height: 200px;
+}
+</style>
