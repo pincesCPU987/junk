@@ -1,0 +1,80 @@
+<title>WTFLang Translator</title>
+
+<h1>
+WTFLang translator
+</h1>
+<textarea id="letters" placeholder="letters"></textarea>
+<textarea id="chars" placeholder="symbols"></textarea>
+
+<h3>
+Directions:
+</h3>
+<p>
+Enter text in the left box to see translated text in the right box.
+<br>
+If you have translated text, enter it in the right box to see the original (although ALL CAPS) text in the left box.
+</p>
+
+<script>
+var chars = `
+!
+&
+(
+)
+?
+*
+,
+.
+-
+_
+$
+=
+<
+>
+@
+{
+}
+'
+"
+;
+:
+^
+~
+|
+/
+\\
+`;
+
+chars = chars.trim().split('\n');
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+letters = letters.split('');
+
+var lettertext = document.querySelector('#letters');
+var chartext = document.querySelector('#chars');
+
+lettertext.oninput = (e) => {
+	var output = '';
+  for (var i = 0; i < lettertext.value.length; i++) {
+  	var char = lettertext.value[i].toUpperCase();
+    if (letters.includes(char)) {
+    	output += chars[letters.indexOf(char)];
+    } else {
+    	output += char;
+    }
+  }
+  chartext.value = output;
+}
+
+chartext.oninput = (e) => {
+	var output = '';
+  for (var i = 0; i < chartext.value.length; i++) {
+  	var char = chartext.value[i].toUpperCase();
+    if (chars.includes(char)) {
+    	output += letters[chars.indexOf(char)];
+    } else {
+    	output += char;
+    }
+  }
+  lettertext.value = output;
+}
+</script>
